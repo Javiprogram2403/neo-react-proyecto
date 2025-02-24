@@ -1,11 +1,13 @@
 import React from 'react';
 import { Card, CardContent, Typography, Box, Chip, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const VehicleItem = ({ vehicle }) => {
   const { marca, modelo, precio, year, estado } = vehicle;
+    const navigate = useNavigate()
 
   const handleBuyClick = () => {
-    alert(`¡Has comprado el ${marca} ${modelo} por $${precio.toLocaleString()}!`);
+    navigate(`/sale/${vehicle._id}`)
   };
 
   return (
