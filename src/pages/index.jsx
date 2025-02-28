@@ -11,6 +11,7 @@ import { EditCustomerPage } from "./edit-customer";
 import { VehiclesPage } from "./vehicles";
 import { NewVehiclePage } from "./new-vehicle";
 import { EditVehiclePage } from "./edit-vehicle";
+import { MyProfilePage } from "./my-profile";
 
 
 export default function PagesRoutes() {
@@ -27,6 +28,7 @@ export default function PagesRoutes() {
       <Route path="/vehicles" element={<VehiclesPage />} />
       <Route path="/new-vehicle" element={<NewVehiclePage />} />
       <Route path="/edit-vehicle/:id" element={<EditVehiclePage />} />
+      <Route path="/my-profile" element={<MyProfilePage />} />
       </Routes>
   );
 }
