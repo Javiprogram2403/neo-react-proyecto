@@ -5,6 +5,8 @@ import { LoginPage } from "./login";
 import { CatalogPage } from "./catalog";
 import { NewSalePage } from "./new-sale";
 import { SalesPage } from "./sales";
+import { CustomersPage } from "./customers";
+import { NewCustomerPage } from "./new-customer";
 
 
 export default function PagesRoutes() {
@@ -15,6 +17,8 @@ export default function PagesRoutes() {
       <Route path="/catalog" element={<CatalogPage />} />
       <Route path="/sale/:id" element={<NewSalePage />} />
       <Route path="/sales" element={<SalesPage />} />
+      <Route path="/customers" element={<CustomersPage />} />
+      <Route path="/new-customer" element={<NewCustomerPage />} />
       </Routes>
   );
 }
