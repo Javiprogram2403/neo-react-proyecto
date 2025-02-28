@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Layout } from "../../components/layout";
-import VehicleList from "../../components/vehicle/vehicleList";
 import axios from "axios";
+import VehicleCatalog from "../../components/vehicle/vehicleCatalog";
 
 export const CatalogPage = () => {
     const [vehicles, setVehicles] = useState([])
@@ -18,7 +18,7 @@ export const CatalogPage = () => {
     <Layout>
       {/* Todo el contenido de la página Home */}
       <h1>Catalog</h1>
-      <VehicleList vehicles={vehicles}></VehicleList>
+      <VehicleCatalog vehicles={vehicles}></VehicleCatalog>
       {/* Más contenido... */}
     </Layout>
   );

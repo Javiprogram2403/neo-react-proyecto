@@ -61,3 +61,17 @@ Los datos sensibles se persisten en localStorage para mantener la sesión activa
 Desconexión y Seguridad:
 Implementar la funcionalidad de logout que limpie el estado global y el localStorage, redirigiendo al usuario a la pantalla de login.
 (editado)
+
+
+
+- xlogin
+- logout
+- ?registrar
+- gestion perfil
+- xtabla de ventas
+- xcrear venta
+- xcatalogo productos
+- xtabla clientes
+- xcrear cliente
+- xeditar cliente
+- xmodificar cliente

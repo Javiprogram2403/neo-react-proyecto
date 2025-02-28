@@ -27,7 +27,11 @@ export default function SaleForm({ vehicle }) {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/clientes');
+        const response = await axios.get('http://localhost:3000/clientes',{
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        });
         setCustomers(response.data); 
         setIsLoading(false);
       } catch (error) {
