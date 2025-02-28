@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Home } from "./home";
 import { LoginPage } from "./login";
 import { CatalogPage } from "./catalog";
-import { SalePage } from "./sale";
+import { SalePage } from "./new-sale";
 
 
 export default function PagesRoutes() {

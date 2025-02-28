@@ -16,7 +16,7 @@ export function SalePage() {
     },[])
   return (
     <Layout>
-        <SaleForm vehicle={vehicle}></SaleForm>
+        {vehicle && <SaleForm vehicle={vehicle}></SaleForm>}
     </Layout>
   );
 }

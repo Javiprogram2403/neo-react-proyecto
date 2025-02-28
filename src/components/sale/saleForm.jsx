@@ -1,11 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { TextField, Button, Grid, Box, Typography, CircularProgress, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import axios from 'axios';
+import { AuthContext } from '../../contexts/authContext';
 
 export default function SaleForm({ vehicle }) {
   const [isLoading, setIsLoading] = useState(true);
   const [customers, setCustomers] = useState([]);
+  const {user, token} = useContext(AuthContext)
   const [selectedCustomerId, setSelectedCustomerId] = useState('');
+
+  const [venta, setVenta] = useState({
+    vehiculo: vehicle._id,
+    vendedor: user._id,
+    importe: vehicle.precio
+  })
+
   const [isSubmitting, setIsSubmitting] = useState(false);
     const [customerData, setCustomerData] = useState({
         dni: '',
@@ -40,15 +49,24 @@ export default function SaleForm({ vehicle }) {
       nombre: customer.nombre,
       direccion: customer.direccion
     });
+
+    setVenta({...venta, comprador: customerId})
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     // crear venta
 
-    console.log('Formulario enviado con los datos:', clienteData);
+    const createdSale = await axios.post("http://localhost:3000/ventas",venta,{
+        headers:{
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+
+    
     setIsSubmitting(false);
   };
 
@@ -157,13 +175,33 @@ export default function SaleForm({ vehicle }) {
           </Grid>
         </Grid>
 
+
+                {/* Selección de comprador */}
+                <Typography variant="h6" gutterBottom sx={{ marginTop: 3 }}>
+          Importe final
+        </Typography>
+        <Grid container spacing={2}>
+         
+         
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              type='number'
+              label="Importe"
+              value={venta.importe}
+              onChange={(ev)=> setVenta({...venta, importe: Number(ev.target.value)})}
+              variant="outlined"
+            />
+          </Grid>
+        </Grid>
+
         {/* Botón de envío */}
         <Box sx={{ marginTop: 3 }}>
           <Button
             variant="contained"
             color="primary"
             type="submit"
-            disabled={isSubmitting}
+            disabled={!venta.comprador || isSubmitting}
           >
             {isSubmitting ? 'Procesando...' : 'Confirmar compra'}
           </Button>
