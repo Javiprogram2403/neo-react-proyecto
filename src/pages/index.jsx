@@ -7,6 +7,7 @@ import { NewSalePage } from "./new-sale";
 import { SalesPage } from "./sales";
 import { CustomersPage } from "./customers";
 import { NewCustomerPage } from "./new-customer";
+import { EditCustomerPage } from "./edit-customer";
 
 
 export default function PagesRoutes() {
@@ -19,6 +20,7 @@ export default function PagesRoutes() {
       <Route path="/sales" element={<SalesPage />} />
       <Route path="/customers" element={<CustomersPage />} />
       <Route path="/new-customer" element={<NewCustomerPage />} />
+      <Route path="/edit-customer/:id" element={<EditCustomerPage />} />
       </Routes>
   );
 }

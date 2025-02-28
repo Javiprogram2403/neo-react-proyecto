@@ -2,13 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import { TextField, Button, Grid, Box, Typography, CircularProgress, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/authContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function SaleForm({ vehicle }) {
   const [isLoading, setIsLoading] = useState(true);
   const [customers, setCustomers] = useState([]);
   const {user, token} = useContext(AuthContext)
   const [selectedCustomerId, setSelectedCustomerId] = useState('');
-
+    const navigate = useNavigate()
   const [venta, setVenta] = useState({
     vehiculo: vehicle._id,
     vendedor: user._id,
@@ -65,6 +66,8 @@ export default function SaleForm({ vehicle }) {
             'Content-Type': 'application/json'
         }
     })
+
+    navigate("/sales")
 
     
     setIsSubmitting(false);
