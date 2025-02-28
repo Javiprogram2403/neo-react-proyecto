@@ -28,7 +28,7 @@ export const AuthProvider = ({children})  => {
             dispatch({type: 'LOGIN_SUCCESS', payload: {user:data.user, token: data.token}})
         } catch (error) {
             console.log('error',error)
-            dispatch({type: 'LOGIN_ERROR', payload: "Email no encontrado"})
+            dispatch({type: 'LOGIN_ERROR', payload: error.response.data.msg})
            
         }
     }

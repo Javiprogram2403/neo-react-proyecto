@@ -1,4 +1,4 @@
-export const authReducer = async (state, action) => {
+export const authReducer = (state, action) => {
     switch(action.type){
         case 'LOGIN_START':
             return {...state, loading: true, error: null}
@@ -7,7 +7,7 @@ export const authReducer = async (state, action) => {
             return {...state, loading: false, user: action.payload.user, token: action.payload.token}
         case 'LOGIN_ERROR':
             console.log('login_error')
-            return {loading: false, user: null,token:null, error: 'Email no encontrado'}
+            return {loading: false, user: null,token:null, error: action.payload}
         case 'LOGOUT':
             return {...state, error: null, user: null, token: null}
 
