@@ -5,7 +5,7 @@ import axios from "axios";
 import VehicleItem from "../../components/vehicle/vehicleItem";
 import SaleForm from "../../components/sale/saleForm";
 
-export function SalePage() {
+export function NewSalePage() {
     const {id} = useParams()
     const [vehicle, setVehicle] = useState(null)
     useEffect(()=>{

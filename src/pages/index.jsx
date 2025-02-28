@@ -3,7 +3,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Home } from "./home";
 import { LoginPage } from "./login";
 import { CatalogPage } from "./catalog";
-import { SalePage } from "./new-sale";
+import { NewSalePage } from "./new-sale";
+import { SalesPage } from "./sales";
 
 
 export default function PagesRoutes() {
@@ -12,7 +13,8 @@ export default function PagesRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/catalog" element={<CatalogPage />} />
-      <Route path="/sale/:id" element={<SalePage />} />
+      <Route path="/sale/:id" element={<NewSalePage />} />
+      <Route path="/sales" element={<SalesPage />} />
       </Routes>
   );
 }
