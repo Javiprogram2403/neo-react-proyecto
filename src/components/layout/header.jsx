@@ -1,50 +1,57 @@
-// components/Header.jsx
-
 import React, { useContext, useState } from "react";
 import {
   AppBar,
   Toolbar,
   Typography,
-  Button,
   IconButton,
   TextField,
   Drawer,
+  List,
+  ListItem,
+  ListItemText,
   Badge,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import LogoutSharp from "@mui/icons-material/LogoutSharp";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { AuthContext } from "../../contexts/authContext";
 
 const Header = () => {
-  // Estado para controlar la apertura y cierre del carrito
+  // Estado para controlar la apertura y cierre del Drawer (menú)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const navigate = useNavigate()
+  const {logout } = useContext(AuthContext)
+
+  const navigate = useNavigate();
+
   // Función para manejar el input de búsqueda
   const handleSearchInput = (event) => {
     const query = event.target.value;
     console.log(query); // Aquí puedes manejar la lógica de búsqueda
   };
 
+  const handleNavigate = (path) => {
+    navigate(path);
+    setIsDrawerOpen(false);  // Cerrar el Drawer al hacer clic en un menú
+  };
 
-
-  function logout(){
-    dispatch({type: 'LOGOUT'})
-    navigate("/login")
+  function doLogout() {
+    // Aquí iría tu lógica para hacer logout
+    logout()
+    navigate("/login");
   }
 
   return (
     <>
       <AppBar position="static">
         <Toolbar>
-          {/* Botón del menú */}
+          {/* Botón del menú (abre el Drawer) */}
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
+            onClick={() => setIsDrawerOpen(true)}
             sx={{ mr: 2 }}
           >
             <MenuIcon />
@@ -68,16 +75,9 @@ const Header = () => {
             sx={{ backgroundColor: "white", borderRadius: 1, mr: 2 }}
           />
 
-          {/* Icono de cuenta de usuario */}
-
-         
-         
-          
-
           {/* Icono del carrito de compras */}
-          <IconButton color="inherit" >
+          <IconButton color="inherit" onClick={() => setIsCartOpen(true)}>
             <Badge badgeContent={4} color="secondary">
-              {" "}
               {/* Dinamiza esta cantidad según el estado del carrito */}
               <ShoppingCartIcon className="shake-animation" />
             </Badge>
@@ -85,8 +85,35 @@ const Header = () => {
         </Toolbar>
       </AppBar>
 
-      {/* Drawer para el carrito */}
-      <Drawer anchor="right" open={isCartOpen} >
+      {/* Drawer para el menú lateral */}
+      <Drawer
+        anchor="left"
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+      >
+        <List>
+          <ListItem button onClick={() => handleNavigate("/catalog")}>
+            <ListItemText primary="Catálogo" />
+          </ListItem>
+          <ListItem button onClick={() => handleNavigate("/sales")}>
+            <ListItemText primary="Ventas" />
+          </ListItem>
+          <ListItem button onClick={() => handleNavigate("/customers")}>
+            <ListItemText primary="Clientes" />
+          </ListItem>
+          <ListItem button onClick={() => handleNavigate("/vehicles")}>
+            <ListItemText primary="Vehículos" />
+          </ListItem>
+          {/* Opcional: puedes agregar un logout aquí si lo deseas */}
+          <ListItem button onClick={doLogout}>
+            <ListItemText primary="Cerrar sesión" />
+          </ListItem>
+        </List>
+      </Drawer>
+
+      {/* Drawer para el carrito (opcional si tienes el carrito) */}
+      <Drawer anchor="right" open={isCartOpen} onClose={() => setIsCartOpen(false)}>
+        {/* Aquí podrías agregar el contenido del carrito */}
       </Drawer>
     </>
   );
