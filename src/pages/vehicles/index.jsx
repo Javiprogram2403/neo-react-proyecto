@@ -1,43 +1,33 @@
-// pages/vehicles/VehiclesPage.js
 import React, { useState, useEffect } from "react";
 import { Layout } from "../../components/layout";
-import axios from "axios";
+import useApi from "../../hooks/useApi";  // Importamos el custom hook
 import VehicleList from "../../components/vehicle/vehicleList";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/authContext";
+import { deleteVehicle } from "../../services/apiClient";
 
 export function VehiclesPage() {
-  const [vehicles, setVehicles] = useState([]);
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchVehicles = async () => {
-      try {
-        const result = await axios.get("http://localhost:3000/vehiculos", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setVehicles(result.data);
-      } catch (error) {
-        console.error("Error al obtener vehículos:", error);
-      }
-    };
+  // Usamos el custom hook useApi para obtener los vehículos
+  const { data: vehicles, loading, error } = useApi("vehiculos", { auth: true });
 
-    fetchVehicles();
-  }, [token]);
 
+
+  // Si la petición está cargando, mostramos un mensaje de carga
+  if (loading) return <p>Cargando...</p>;
+
+  // Si hubo un error, mostramos el error
+  if (error) return <p>Error al obtener los vehículos: {error}</p>;
+
+  // El handleDelete lo dejamos con axios tal como estaba
   const handleDelete = async (vehicleId) => {
     try {
-      await axios.delete(`http://localhost:3000/vehiculos/${vehicleId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setVehicles(vehicles.filter((vehicle) => vehicle._id !== vehicleId));
+      await deleteVehicle(vehicleId,token)
+        navigate(0)
     } catch (error) {
       console.error("Error al eliminar vehículo:", error);
     }

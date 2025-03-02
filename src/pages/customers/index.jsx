@@ -1,61 +1,57 @@
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import CustomerList from "../../components/customer/customerList";  // Asegúrate de que la ruta sea correcta
+import { useContext, useState } from "react";
 import { Layout } from "../../components/layout";
 import { AuthContext } from "../../contexts/authContext";
-import { Button } from "@mui/material";  // Importamos el botón de MUI
-import { useNavigate } from "react-router-dom";  // Importamos useNavigate
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import useApi from "../../hooks/useApi"; // Importar el custom hook
+import CustomerList from "../../components/customer/customerList";
+import axios from "axios";
+import { deleteCustomer } from "../../services/apiClient";
 
 export function CustomersPage() {
-    
-    const [customers, setCustomers] = useState([]);
-    const { token } = useContext(AuthContext);
-    const navigate = useNavigate();  // Inicializamos useNavigate
+  const navigate = useNavigate();
+  const {token} = useContext(AuthContext)
+  // Usamos el custom hook useApi para obtener los clientes
+  const { data: customers, loading, error, refetch } = useApi("clientes", { 
+    auth: true 
+  });
 
-    useEffect(() => {
-        axios.get("http://localhost:3000/clientes", {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then((result) => {
-            setCustomers(result.data);
-        })
-        .catch((error) => {
-            console.error("Error al obtener clientes:", error);
-        });
-    }, [token]);
+  // Si la petición está cargando, mostramos un mensaje de carga
+  if (loading) return <h1>Loading...</h1>;
 
-    async function handleDelete(customerId) {
-        try {
-            await axios.delete(`http://localhost:3000/clientes/${customerId}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            setCustomers(customers.filter((customer) => customer._id !== customerId));
-        } catch (error) {
-            console.error("Error al eliminar cliente:", error);
-        }
+  // Si hubo un error, mostramos el error
+  if (error) return <h1>Error: {error}</h1>;
+
+
+
+  // Función para eliminar un cliente
+  const handleDelete = async (customerId) => {
+    try {
+      // Usamos useApi para hacer la solicitud DELETE
+      await deleteCustomer(customerId,token)
+    navigate(0)
+    } catch (error) {
+      console.error("Error al eliminar cliente:", error);
     }
+  };
 
-    const handleCreateCustomer = () => {
-        navigate("/new-customer");  // Redirige a la página para crear un nuevo cliente
-    };
+  // Función para navegar a la página de creación de un nuevo cliente
+  const handleCreateCustomer = () => {
+    navigate("/new-customer");
+  };
 
-    return (
-        <Layout>
-            <h1>Lista de Clientes</h1>
-            {/* Botón para crear un nuevo cliente */}
-            <Button 
-                variant="contained" 
-                color="primary" 
-                onClick={handleCreateCustomer}
-                style={{ marginBottom: "20px" }}
-            >
-                Crear Nuevo Cliente
-            </Button>
-            <CustomerList customers={customers} onDelete={handleDelete} />
-        </Layout>
-    );
+  return (
+    <Layout>
+      <h1>Lista de Clientes</h1>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleCreateCustomer}
+        style={{ marginBottom: "20px" }}
+      >
+        Crear Nuevo Cliente
+      </Button>
+      <CustomerList customers={customers} onDelete={handleDelete} />
+    </Layout>
+  );
 }

@@ -40,9 +40,9 @@ const SaleList = ({ sales, onDelete }) => {
           <TableBody>
             {sales.map((venta, index) => (
               <TableRow key={index}>
-                <TableCell>{venta.vendedor.nombre}</TableCell>
-                <TableCell>{venta.comprador.nombre}</TableCell>
-                <TableCell>{`${venta.vehiculo.marca} ${venta.vehiculo.modelo} (${venta.vehiculo.year})`}</TableCell>
+                <TableCell>{venta.vendedor && venta.vendedor.nombre}</TableCell>
+                <TableCell>{venta.comprador && venta.comprador.nombre}</TableCell>
+                <TableCell>{`${venta.vehiculo && venta.vehiculo.marca} ${venta.vehiculo && venta.vehiculo.modelo} (${ venta.vehiculo &&venta.vehiculo.year})`}</TableCell>
                 <TableCell>${venta.importe.toLocaleString()}</TableCell>
                 <TableCell>
                   <IconButton onClick={() => handleOpenDialog(venta)}>

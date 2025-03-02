@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react";
 import { Layout } from "../../components/layout";
-import axios from "axios";
+import useApi from "../../hooks/useApi"; // Importar el custom hook
 import VehicleCatalog from "../../components/vehicle/vehicleCatalog";
 
 export const CatalogPage = () => {
-    const [vehicles, setVehicles] = useState([])
+  // Usamos el custom hook useApi para obtener los vehículos
+  const { data: vehicles, loading, error } = useApi("vehiculos", { auth: false });
 
+  // Si la petición está cargando, mostramos un mensaje de carga
+  if (loading) return <h1>Loading...</h1>;
 
-    useEffect(()=>{
-        axios.get("http://localhost:3000/vehiculos")
-        .then((result)=>{
-            setVehicles(result.data)
-        })
-    })
+  // Si hubo un error en la petición, mostramos el error
+  if (error) return <h1>Error: {error}</h1>;
 
   return (
     <Layout>
-      {/* Todo el contenido de la página Home */}
+      {/* Todo el contenido de la página Catalog */}
       <h1>Catalog</h1>
-      <VehicleCatalog vehicles={vehicles}></VehicleCatalog>
+      <VehicleCatalog vehicles={vehicles} />
       {/* Más contenido... */}
     </Layout>
   );

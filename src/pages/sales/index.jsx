@@ -1,45 +1,40 @@
-import { useParams } from "react-router-dom";
 import { Layout } from "../../components/layout";
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import useApi from "../../hooks/useApi";  // Importamos el custom hook
 import SaleList from "../../components/sale/saleList";
 import { AuthContext } from "../../contexts/authContext";
+import { deleteSale } from "../../services/apiClient";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
 export function SalesPage() {
-    
-    const [sales, setSales] = useState([])
     const {token} = useContext(AuthContext)
-    useEffect(()=>{
-        axios.get(`http://localhost:3000/ventas`,
-            {
-                headers:{
-                    'Authorization': `Bearer ${token}`
-                }
-            }
-        )
-        .then((result)=>{
-            setSales(result.data)
-        })
-    },[])
+    const navigate = useNavigate()
+    // Usamos el custom hook useApi para obtener las ventas
+    const { data:sales, loading, error } = useApi('ventas', { 
+        auth: true
+    });
 
-    async function handleDelete(saleId){
+
+
+    // Si la petición está cargando, mostramos un mensaje de carga
+    if (loading) return <p>Cargando...</p>;
+
+    // Si hubo un error, mostramos el error
+    if (error) return <p>Error al obtener las ventas: {error}</p>;
+
+    // El handleDelete lo dejamos con axios tal como estaba
+    async function handleDelete(saleId) {
         try {
-            await axios.delete(`http://localhost:3000/ventas/${saleId}`,{
-                headers:{
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            setSales(sales.filter(x=>x._id !== saleId))
+            await deleteSale(saleId, token)
+           navigate(0)
         } catch (error) {
-            console.error(error)
+            console.error("Error al eliminar la venta:", error);
         }
-       
-
     }
 
-  return (
-    <Layout>
-       <SaleList sales={sales} onDelete={handleDelete}></SaleList>
-    </Layout>
-  );
+    return (
+        <Layout>
+            <SaleList sales={sales} onDelete={handleDelete} />
+        </Layout>
+    );
 }
