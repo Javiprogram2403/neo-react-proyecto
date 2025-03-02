@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, Box, Chip, Button, Grid, CardMedia } fro
 import { useNavigate } from 'react-router-dom';
 import fotoCoche from '../../assets/foto_coche.jpg'
 const VehicleItem = ({ vehicle }) => {
-  const { marca, modelo, precio, year, estado, imagen } = vehicle; // Asumimos que `imagen` es una URL de la imagen del coche
+  const { marca, modelo, precio, year, estado } = vehicle;
   const navigate = useNavigate();
 
   const handleBuyClick = () => {
