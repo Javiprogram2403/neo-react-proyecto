@@ -1,77 +1,55 @@
 # Web concesionario
+# Instrucciones para ejecutar el proyecto
 
-## 1. Requisitos Funcionales
-### Autenticación y Login
-- xPantalla de Login: La aplicación debe iniciar con una pantalla de autenticación donde los usuarios ingresen sus credenciales.
-- xValidación y manejo de errores: Se debe realizar la validación de los datos en el formulario y manejar errores de autenticación.
-- xComunicación con el Backend: El login debe enviar las credenciales al backend y, de recibir una respuesta exitosa (por ejemplo, un token), proceder a almacenar la información necesaria.
-- xPersistencia del Estado: Una vez autenticado, el token o la información de sesión deberá almacenarse en el localStorage para mantener la sesión activa en recargas de página.
-### Routing y Rutas Protegidas
-- xReact Router: Utilizar React Router (preferiblemente la versión 6) para definir y gestionar la navegación entre diferentes vistas de la aplicación.
-- Rutas Protegidas: Implementar rutas que solo sean accesibles para usuarios autenticados. Por ejemplo, mediante un componente ProtectedRoute que verifique el estado de autenticación antes de renderizar la ruta.
-- xNavegación Dinámica: Asegurarse de que la navegación se actualice de acuerdo al estado de la aplicación (por ejemplo, mostrar menús o enlaces condicionalmente).
+Este proyecto está dividido en dos partes: el **backend** y el **frontend**. Para ejecutar el proyecto localmente, sigue los pasos que se describen a continuación.
 
-### Gestión del Estado entre componentes
--x Context API: Crear uno o más contextos para compartir información global (como la información del usuario autenticado, temas de la aplicación, etc.) sin necesidad de prop-drilling.
-- xReducers: Utilizar useReducer (o una solución similar) para manejar estados complejos y acciones, como la actualización del estado de autenticación, manejo de errores o estados de carga.
+## Paso 1: Crear los archivos `.env`
 
-### Custom Hooks
-- Abstracción de Lógica: Desarrollar al menos un custom hook para encapsular y reutilizar lógica común. Ejemplos:
-- useForm: para gestionar formularios, validaciones y manejo de datos.
-- useFetch o useApi: para centralizar la lógica de las peticiones al backend, manejo de loading, errores, etc.
-### LocalStorage
-- xPersistencia de Datos: Emplear localStorage para almacenar información relevante que deba persistir entre sesiones, como tokens de autenticación, preferencias del usuario u otros datos críticos.
-### Comunicación con el Backend
-- xAPI REST: La aplicación debe interactuar con el backend mediante peticiones HTTP (fetch, axios u otra librería de tu preferencia). Se deben implementar las siguientes operaciones:
-xGET: Para obtener y mostrar información desde la base de datos.
-xPOST, PUT/PATCH, DELETE: Para crear, actualizar y eliminar registros, respectivamente.
-### CRUDs Mínimos (3 Módulos)
-- El proyecto debe soportar, al menos, tres módulos CRUD. Cada módulo debe incluir:
-- Listado de registros: Una vista que muestre los datos obtenidos de la base de datos.
-- Crear nuevo registro: Formulario para la inserción de nuevos datos.
-- Editar registro existente: Funcionalidad para actualizar la información de un registro.
-- Eliminar registro: Opción para eliminar registros con confirmación previa.
+### Crear el archivo `.env` en la carpeta `/backend`
 
-Ejemplos de módulos CRUD:
-- Usuarios: Gestión de perfiles o datos de usuarios.
-- xProductos: Catálogo de productos o servicios.
-- Pedidos/Transacciones: Gestión de órdenes o transacciones realizadas.
-## 2. Requisitos Técnicos y Buenas Prácticas
-### Estructuración y Organización del Proyecto
-xCarpetas y Componentes: Organizar el código en carpetas lógicas (por ejemplo, components, hooks, contexts, reducers, services).
-xComponentes Reutilizables: Diseñar componentes que puedan reutilizarse en diferentes partes de la aplicación (por ejemplo, botones, formularios, modales).
-### Deployment (ESTO LO HACEMOS JUNTOS CUANDO ACABEIS)
-Despliegue en Producción: El proyecto debe estar desplegado en un entorno accesible públicamente (por ejemplo, Vercel, Netlify o similar) para poder ser evaluado en vivo.
+1. Navega a la carpeta `backend` dentro de tu proyecto.
+2. Crea un archivo llamado `.env` en esa carpeta.
+3. Copia el contenido que te haya enviado por correo electrónico para configurar las credenciales y otras configuraciones necesarias.
 
-Documentación: Incluir un README claro que explique cómo instalar, ejecutar y probar la aplicación, además de detallar las decisiones técnicas tomadas.
-## 3. Flujo SUGERIDO de la Aplicación ( NO ES OBLIGATORIA LA ESTRUCTURA )
-Pantalla de Login:
-El usuario ingresa sus credenciales.
-Se realiza la petición al backend para autenticar al usuario.
-Si la autenticación es exitosa, se almacena la sesión en localStorage y se actualiza el estado global.
-Dashboard y Navegación Principal:
-Una vez autenticado, el usuario es redirigido a un dashboard o página principal.
-Desde aquí, se accede a los diferentes módulos CRUD mediante la navegación proporcionada por React Router.
-Módulos CRUD:
-Cada módulo (por ejemplo, Usuarios, Productos, Pedidos) permite listar, crear, editar y eliminar registros.
-Las operaciones se realizan a través de peticiones al backend, actualizando la UI según los resultados.
-Gestión del Estado y Persistencia:
-La información de autenticación y otros estados globales se manejan mediante Context API y Reducers.
-Los datos sensibles se persisten en localStorage para mantener la sesión activa.
-Desconexión y Seguridad:
-Implementar la funcionalidad de logout que limpie el estado global y el localStorage, redirigiendo al usuario a la pantalla de login.
-(editado)
+### Crear el archivo `.env` en la carpeta principal del proyecto
 
+1. Navega a la carpeta principal del proyecto (donde se encuentra el archivo `package.json` del frontend).
+2. Crea un archivo llamado `.env` en esa carpeta.
+3. Copia el contenido que te haya enviado por correo electrónico para configurar las credenciales y otras configuraciones necesarias para el frontend.
 
+## Paso 2: Instalación de dependencias y ejecución del backend
 
-- xlogin
-- logout
-- ?registrar
-- gestion perfil
-- xtabla de ventas
-- xcrear venta
-- xcatalogo productos
-- xtabla clientes
-- xcrear cliente
-- xeditar cliente
-- xmodificar cliente
+1. Abre una terminal y navega hasta la carpeta `backend` del proyecto:
+  
+Instala las dependencias del backend ejecutando el siguiente comando:
+
+```bash
+npm install
+```
+Después de que las dependencias se hayan instalado correctamente, ejecuta el servidor del backend con el siguiente comando:
+
+```bash
+node src/index.js
+```
+
+El servidor debería estar ahora ejecutándose y esperando solicitudes en el puerto que hayas configurado en el archivo .env (normalmente, algo como http://localhost:3000).
+
+## Paso 3: Ejecución del frontend
+Abre una nueva terminal y navega a la carpeta principal del proyecto (donde está el archivo package.json del frontend).
+
+Instala las dependencias del frontend ejecutando el siguiente comando:
+
+```bash
+npm install
+```
+Luego, ejecuta el servidor de desarrollo para el frontend con:
+
+```bash
+npm run dev
+```
+El frontend debería estar ahora ejecutándose y accesible en http://localhost:5173 (o en otro puerto si se ha configurado de manera diferente).
+
+## Paso 4: Acceder al proyecto
+Backend: Una vez que el servidor backend esté en funcionamiento, debería estar disponible en el puerto que hayas configurado (por ejemplo, http://localhost:3000).
+
+Frontend: El servidor de desarrollo de Vite estará disponible en http://localhost:5173 (o el puerto que hayas configurado).
