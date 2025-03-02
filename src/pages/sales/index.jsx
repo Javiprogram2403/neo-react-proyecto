@@ -9,17 +9,17 @@ import { useContext } from "react";
 export function SalesPage() {
     const {token} = useContext(AuthContext)
     const navigate = useNavigate()
-    // Usamos el custom hook useApi para obtener las ventas
+    
     const { data:sales, loading, error } = useApi('ventas', { 
         auth: true
     });
 
 
 
-    // Si la petición está cargando, mostramos un mensaje de carga
+    
     if (loading) return <p>Cargando...</p>;
 
-    // Si hubo un error, mostramos el error
+    
     if (error) return <p>Error al obtener las ventas: {error}</p>;
 
     // El handleDelete lo dejamos con axios tal como estaba

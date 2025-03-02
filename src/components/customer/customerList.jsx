@@ -40,7 +40,7 @@ const CustomerList = ({ customers, onDelete }) => {
               <TableCell>Nombre</TableCell>
               <TableCell>DNI</TableCell>
               <TableCell>Dirección</TableCell>
-              <TableCell>Acciones</TableCell> {/* Columna de acciones (editar/eliminar) */}
+              <TableCell>Acciones</TableCell> 
             </TableRow>
           </TableHead>
           <TableBody>
@@ -63,7 +63,7 @@ const CustomerList = ({ customers, onDelete }) => {
         </Table>
       </TableContainer>
 
-      {/* Diálogo de confirmación */}
+      
       <Dialog open={openDialog} onClose={handleCloseDialog}>
         <DialogTitle>Confirmar eliminación</DialogTitle>
         <DialogContent>

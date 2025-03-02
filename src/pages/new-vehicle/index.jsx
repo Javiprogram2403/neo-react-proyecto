@@ -10,7 +10,7 @@ export function NewVehiclePage() {
       <Typography variant="h4" gutterBottom>
         Crear Nuevo Vehículo
       </Typography>
-      {/* Usamos VehicleForm sin pasarle ningún vehículo, ya que es para crear */}
+      
       <VehicleForm />
     </Layout>
   );

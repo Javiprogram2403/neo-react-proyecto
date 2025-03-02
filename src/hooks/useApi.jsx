@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useCallback, useEffect, useState, useContext } from "react";
-import  {AuthContext}  from "../contexts/authContext"; // Asume que tu contexto está aquí
+import  {AuthContext}  from "../contexts/authContext"; 
 
-// Definimos la URL base
+
 const BASE_URL = import.meta.env.VITE_API_URL+ "/";
 
 export default function useApi(url, options = {}) {
@@ -24,7 +24,7 @@ export default function useApi(url, options = {}) {
       const config = {
         url: fullUrl,
         method,
-        data: body, // `data` is used for POST, PUT, PATCH
+        data: body, 
         headers: {
           ...headers,
           ...(auth && token ? { Authorization: `Bearer ${token}` } : {}), // Si 'auth' es true y hay un token, añade el header

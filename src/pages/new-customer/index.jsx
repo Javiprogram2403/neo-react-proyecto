@@ -6,7 +6,7 @@ export function NewCustomerPage() {
   return (
     <Layout>
       <h1>Crear Nuevo Cliente</h1>
-      <CustomerForm /> {/* Pasamos null o sin prop para crear un cliente */}
+      <CustomerForm /> 
     </Layout>
   );
 }

@@ -13,7 +13,7 @@ const LoginForm = () => {
     // Lógica para la autenticación o validación
     if (!email || !password) {
     } else {
-      // Aquí iría la lógica de autenticación
+      
       console.log("Accediendo con:", { email, password });
       await login(email, password);
     }

@@ -16,18 +16,18 @@ export function CustomersPage() {
     auth: true 
   });
 
-  // Si la petición está cargando, mostramos un mensaje de carga
+  
   if (loading) return <h1>Loading...</h1>;
 
-  // Si hubo un error, mostramos el error
+  
   if (error) return <h1>Error: {error}</h1>;
 
 
 
-  // Función para eliminar un cliente
+  
   const handleDelete = async (customerId) => {
     try {
-      // Usamos useApi para hacer la solicitud DELETE
+      
       await deleteCustomer(customerId,token)
     navigate(0)
     } catch (error) {

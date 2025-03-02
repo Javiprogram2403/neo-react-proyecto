@@ -9,7 +9,7 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({children})  => {
     const [state, dispatch] = useReducer(authReducer,  INITIAL_STATE, (initial)=>{
-         // intento coger la sesion del localstorage si existe
+         
          const usersStored = localStorage.getItem('auth')
          try{
             const parsed = JSON.parse(usersStored)

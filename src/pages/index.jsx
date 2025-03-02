@@ -35,7 +35,7 @@ export default function PagesRoutes() {
         }
       />
 
-      {/* Rutas protegidas */}
+      
       <Route
         path="/customers"
         element={

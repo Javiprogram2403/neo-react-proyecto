@@ -64,7 +64,7 @@ const VehicleList = ({ vehicles, onDelete }) => {
         </Table>
       </TableContainer>
 
-      {/* Diálogo de confirmación de eliminación */}
+      
       <Dialog open={openDialog} onClose={handleCloseDialog}>
         <DialogTitle>Confirmar eliminación</DialogTitle>
         <DialogContent>

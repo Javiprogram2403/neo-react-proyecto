@@ -12,35 +12,35 @@ const VehicleItem = ({ vehicle }) => {
   };
 
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3}> {/* Responsive grid */}
+    <Grid item xs={12} sm={6} md={4} lg={3}> 
       <Card sx={{ display: 'flex', flexDirection: 'column', boxShadow: 3, borderRadius: 2, overflow: 'hidden' }}>
         
-        {/* Imagen del vehículo */}
+        
         <CardMedia
           component="img"
           alt={`${marca} ${modelo}`}
           height="200"
-          image={fotoCoche } // Imagen genérica si no hay imagen
+          image={fotoCoche } 
           sx={{ objectFit: 'cover' }}
         />
         
         <CardContent sx={{ flex: 1 }}>
-          {/* Título */}
+         
           <Typography variant="h6" component="div" gutterBottom sx={{ fontWeight: 'bold' }}>
             {marca} {modelo}
           </Typography>
           
-          {/* Año */}
+          
           <Typography variant="body2" color="text.secondary">
             Año: {year}
           </Typography>
           
-          {/* Precio */}
+          
           <Typography variant="h6" color="primary" sx={{ fontWeight: 'bold', marginTop: 1 }}>
             ${precio.toLocaleString()}
           </Typography>
           
-          {/* Estado */}
+          
           <Box mt={2}>
             <Chip
               label={estado}
@@ -49,7 +49,7 @@ const VehicleItem = ({ vehicle }) => {
             />
           </Box>
           
-          {/* Botón de compra */}
+          
           <Box mt={2}>
             <Button
               variant="contained"

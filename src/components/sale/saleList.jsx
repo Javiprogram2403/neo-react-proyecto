@@ -55,7 +55,7 @@ const SaleList = ({ sales, onDelete }) => {
         </Table>
       </TableContainer>
 
-      {/* Diálogo de confirmación */}
+      
       <Dialog open={openDialog} onClose={handleCloseDialog}>
         <DialogTitle>Confirmar eliminación</DialogTitle>
         <DialogContent>

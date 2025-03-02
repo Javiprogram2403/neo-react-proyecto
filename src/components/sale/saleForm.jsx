@@ -131,7 +131,7 @@ export default function SaleForm({ vehicle }) {
           </Grid>
         </Grid>
 
-        {/* Selección de comprador */}
+        
         <Typography variant="h6" gutterBottom sx={{ marginTop: 3 }}>
           Datos del comprador
         </Typography>
@@ -183,7 +183,7 @@ export default function SaleForm({ vehicle }) {
         </Grid>
 
 
-                {/* Selección de comprador */}
+                
                 <Typography variant="h6" gutterBottom sx={{ marginTop: 3 }}>
           Importe final
         </Typography>
@@ -202,7 +202,7 @@ export default function SaleForm({ vehicle }) {
           </Grid>
         </Grid>
 
-        {/* Botón de envío */}
+        
         <Box sx={{ marginTop: 3 }}>
           <Button
             variant="contained"

@@ -1,5 +1,5 @@
 // Layout.tsx
-import Header from "./header"; // Asegúrate de importar tu componente Header
+import Header from "./header"; 
 
 // eslint-disable-next-line react/prop-types
 export const Layout = ({ children }) => {
@@ -7,7 +7,7 @@ export const Layout = ({ children }) => {
     <div>
       <Header />
       <main style={{ marginTop: "64px" }}>{children}</main>
-      {/* Aquí podrías incluir también un Footer si lo necesitas */}
+     
     </div>
   );
 };

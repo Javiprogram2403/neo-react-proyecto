@@ -8,7 +8,7 @@ export function EditCustomerPage() {
   const [customer, setCustomer] = useState(null);
   const { id } = useParams();  // Obtenemos el id del cliente de la ruta
 
-  // Usamos el custom hook useApi para obtener el cliente
+  
   const { data, loading, error } = useApi(`clientes/${id}`, { 
     auth: true 
   });
@@ -19,10 +19,10 @@ export function EditCustomerPage() {
     }
   }, [data]);
 
-  // Si la petición está cargando, mostramos un mensaje de carga
+  
   if (loading) return <p>Cargando...</p>;
 
-  // Si hubo un error, mostramos el error
+  
   if (error) return <p>Error al obtener el cliente: {error}</p>;
 
   return (

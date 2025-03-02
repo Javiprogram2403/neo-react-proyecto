@@ -17,10 +17,10 @@ export function VehiclesPage() {
 
 
 
-  // Si la petición está cargando, mostramos un mensaje de carga
+  
   if (loading) return <p>Cargando...</p>;
 
-  // Si hubo un error, mostramos el error
+ 
   if (error) return <p>Error al obtener los vehículos: {error}</p>;
 
   // El handleDelete lo dejamos con axios tal como estaba

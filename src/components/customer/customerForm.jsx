@@ -3,7 +3,7 @@ import { TextField, Button, Container, Typography } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/authContext";  // Asegúrate de que la ruta sea correcta
+import { AuthContext } from "../../contexts/authContext";  
 
 const CustomerForm = ({ customer }) => {
   const [nombre, setNombre] = useState("");

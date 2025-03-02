@@ -26,7 +26,7 @@ const Header = () => {
   // Función para manejar el input de búsqueda
   const handleSearchInput = (event) => {
     const query = event.target.value;
-    console.log(query); // Aquí puedes manejar la lógica de búsqueda
+    console.log(query); 
   };
 
   const handleNavigate = (path) => {
@@ -35,7 +35,7 @@ const Header = () => {
   };
 
   function doLogout() {
-    // Aquí iría tu lógica para hacer logout
+    
     logout();
     navigate("/login");
   }
@@ -44,7 +44,7 @@ const Header = () => {
     <>
       <AppBar position="static">
         <Toolbar>
-          {/* Botón del menú (abre el Drawer) */}
+          
           <IconButton
             size="large"
             edge="start"
@@ -56,7 +56,7 @@ const Header = () => {
             <MenuIcon />
           </IconButton>
 
-          {/* Título de la tienda */}
+          
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Mi concesionario
           </Typography>
@@ -71,7 +71,7 @@ const Header = () => {
         </Toolbar>
       </AppBar>
 
-      {/* Drawer para el menú lateral */}
+      
       <Drawer
       
         anchor="left"
