@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { LoginPage } from "./login";
 import { CatalogPage } from "./catalog";
 import { NewSalePage } from "./new-sale";
@@ -11,22 +11,87 @@ import { VehiclesPage } from "./vehicles";
 import { NewVehiclePage } from "./new-vehicle";
 import { EditVehiclePage } from "./edit-vehicle";
 import { MyProfilePage } from "./my-profile";
-
+import ProtectedRoute from "../components/protectedRoute/protectedRoute";
 
 export default function PagesRoutes() {
   return (
     <Routes>
       <Route path="/" element={<CatalogPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/sale/:id" element={<NewSalePage />} />
-      <Route path="/sales" element={<SalesPage />} />
-      <Route path="/customers" element={<CustomersPage />} />
-      <Route path="/new-customer" element={<NewCustomerPage />} />
-      <Route path="/edit-customer/:id" element={<EditCustomerPage />} />
-      <Route path="/vehicles" element={<VehiclesPage />} />
-      <Route path="/new-vehicle" element={<NewVehiclePage />} />
-      <Route path="/edit-vehicle/:id" element={<EditVehiclePage />} />
-      <Route path="/my-profile" element={<MyProfilePage />} />
-      </Routes>
+      <Route
+        path="/sale/:id"
+        element={
+          <ProtectedRoute>
+            <NewSalePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/sales"
+        element={
+          <ProtectedRoute>
+            <SalesPage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Rutas protegidas */}
+      <Route
+        path="/customers"
+        element={
+          <ProtectedRoute>
+            <CustomersPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/new-customer"
+        element={
+          <ProtectedRoute>
+            <NewCustomerPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/edit-customer/:id"
+        element={
+          <ProtectedRoute>
+            <EditCustomerPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/vehicles"
+        element={
+          <ProtectedRoute>
+            <VehiclesPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/new-vehicle"
+        element={
+          <ProtectedRoute>
+            <NewVehiclePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/edit-vehicle/:id"
+        element={
+          <ProtectedRoute>
+            <EditVehiclePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/my-profile"
+        element={
+          <ProtectedRoute>
+            <MyProfilePage />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 }
