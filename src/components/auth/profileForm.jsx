@@ -24,7 +24,7 @@ const ProfileForm = () => {
     try {
       // Actualizamos los datos del usuario en la API
       const result = await axios.put(
-        `http://localhost:3000/usuarios/${user._id}`,
+        `${import.meta.env.VITE_API_URL}/usuarios/${user._id}`,
         {  email },
         {
           headers: {

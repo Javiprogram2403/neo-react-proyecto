@@ -34,7 +34,7 @@ const VehicleForm = ({ vehicle }) => {
       if (vehicle) {
         // Editar vehículo
         await axios.put(
-          `http://localhost:3000/vehiculos/${vehicle._id}`,
+          `${import.meta.env.VITE_API_URL}/vehiculos/${vehicle._id}`,
           { marca, modelo, precio, year, estado },
           {
             headers: {
@@ -46,7 +46,7 @@ const VehicleForm = ({ vehicle }) => {
       } else {
         // Crear vehículo
         await axios.post(
-          "http://localhost:3000/vehiculos",
+          `${import.meta.env.VITE_API_URL}/vehiculos`,
           { marca, modelo, precio, year, estado },
           {
             headers: {

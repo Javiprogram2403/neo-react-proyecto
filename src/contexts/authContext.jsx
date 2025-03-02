@@ -32,7 +32,7 @@ export const AuthProvider = ({children})  => {
     async function login(email, password){
         dispatch({type: 'LOGIN_START'})
         try {
-            const {data} = await axios.post(`http://localhost:3000/login`, {
+            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
                 "email": email,
                 "clave": password
             })

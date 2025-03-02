@@ -30,7 +30,7 @@ const CustomerForm = ({ customer }) => {
       if (customer) {
         // Editar cliente
         await axios.put(
-          `http://localhost:3000/clientes/${customer._id}`,
+          `${import.meta.env.VITE_API_URL}/clientes/${customer._id}`,
           { nombre, dni, direccion },
           {
             headers: {
@@ -42,7 +42,7 @@ const CustomerForm = ({ customer }) => {
       } else {
         // Crear cliente
         await axios.post(
-          "http://localhost:3000/clientes",
+          `${import.meta.env.VITE_API_URL}/clientes`,
           { nombre, dni, direccion },
           {
             headers: {

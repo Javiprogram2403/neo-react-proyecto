@@ -27,7 +27,7 @@ export default function SaleForm({ vehicle }) {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/clientes',{
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/clientes`,{
             headers:{
                 'Authorization': `Bearer ${token}`
             }
@@ -64,7 +64,7 @@ export default function SaleForm({ vehicle }) {
 
     // crear venta
 
-    const createdSale = await axios.post("http://localhost:3000/ventas",venta,{
+    const createdSale = await axios.post(`${import.meta.env.VITE_API_URL}/ventas`,venta,{
         headers:{
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

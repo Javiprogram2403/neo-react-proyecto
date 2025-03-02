@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState, useContext } from "react";
 import  {AuthContext}  from "../contexts/authContext"; // Asume que tu contexto está aquí
 
 // Definimos la URL base
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = import.meta.env.VITE_API_URL+ "/";
 
 export default function useApi(url, options = {}) {
   const { token } = useContext(AuthContext); // Obtener el token del contexto
