@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, Typography, Box, Chip, Button, Grid, CardMedia } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
+import fotoCoche from '../../assets/foto_coche.jpg'
 const VehicleItem = ({ vehicle }) => {
   const { marca, modelo, precio, year, estado, imagen } = vehicle; // Asumimos que `imagen` es una URL de la imagen del coche
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const VehicleItem = ({ vehicle }) => {
           component="img"
           alt={`${marca} ${modelo}`}
           height="200"
-          image={imagen || "https://via.placeholder.com/400x200?text=Imagen+no+disponible"} // Imagen genérica si no hay imagen
+          image={fotoCoche } // Imagen genérica si no hay imagen
           sx={{ objectFit: 'cover' }}
         />
         
