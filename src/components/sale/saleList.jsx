@@ -18,7 +18,7 @@ const SaleList = ({ sales, onDelete }) => {
 
   const handleDelete = () => {
     if (ventaAEliminar) {
-      onDelete(ventaAEliminar._id);  // Llamar a la función onDelete pasándole el id de la venta
+      onDelete(ventaAEliminar._id);
       setOpenDialog(false);
       setVentaAEliminar(null);
     }
@@ -34,7 +34,7 @@ const SaleList = ({ sales, onDelete }) => {
               <TableCell>Comprador</TableCell>
               <TableCell>Vehículo</TableCell>
               <TableCell>Importe</TableCell>
-              <TableCell>Acciones</TableCell> {/* Columna de acciones (eliminar) */}
+              <TableCell>Acciones</TableCell> 
             </TableRow>
           </TableHead>
           <TableBody>
